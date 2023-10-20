@@ -114,3 +114,4 @@ def plot_results(img,act,save_path):
     plt.tick_params(left=False,right=False,labelleft=False,labelbottom=False,bottom=False)
 
     plt.savefig(save_path)
+    plt.show()
