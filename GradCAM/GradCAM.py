@@ -39,8 +39,9 @@ def GCAM(img_path:Path,
 
     # Create save path for output
     img_name = os.path.basename(os.path.splitext(img_path)[0])
-    save_path = os.path.join(outpath,img_name,f'GCAM_layer_{layer}.png')
+    save_path = os.path.join(outpath,img_name)
     os.makedirs(save_path,exist_ok=True)
+    save_path = os.path.join(save_path,f'GCAM_layer_{layer}.png')
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     extractor.to(device)
