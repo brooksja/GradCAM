@@ -65,7 +65,7 @@ def GCAM(img_path:Path,
     x.retain_grad() # keep the gradients from the layer of interest
     z = extractor_end(x)
     z.squeeze().unsqueeze(0) # force correct shape
-    feats = extractor_last(z)
+    feats = extractor_last(z).squeeze().unsqueeze(0)
 
     # Put feats through MIL model
     z = MILmodel.encoder(feats)
