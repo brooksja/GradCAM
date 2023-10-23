@@ -92,7 +92,7 @@ def default_extractor():
     # Use default weights from torchvision
     weights = ResNet18_Weights.DEFAULT
     # Load the default (ImageNet) transforms
-    transforms = weights.transforms
+    transforms = weights.transforms()
     # Load ResNet18 model
     model = resnet18(weights=weights,progress=False)
     # Replace final (fully-connected) layer with identity to get features
