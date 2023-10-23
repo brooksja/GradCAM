@@ -11,7 +11,7 @@ def GCAM(img_path:Path,
          MILmodel_path:Path,
          extractor:nn.Module=None,
          layer:int=5,
-         transform = None,
+         transforms = None,
          outpath:Path = Path(os.getcwd())):
     """
     Main function; preps models and input image, runs image through models, gets activations and plots results
@@ -33,9 +33,9 @@ def GCAM(img_path:Path,
         raise TypeError()
     
     if not extractor:
-        extractor,transform = default_extractor()
-    if not transform:
-        _,transform = default_extractor()
+        extractor,transforms = default_extractor()
+    if not transforms:
+        _,transforms = default_extractor()
 
     # Create save path for output
     img_name = os.path.basename(os.path.splitext(img_path)[0])
@@ -57,7 +57,7 @@ def GCAM(img_path:Path,
 
     # Load image and apply transforms
     orig = Image.open(img_path)
-    img = transform(orig).unsqueeze(0).to(device)
+    img = transforms(orig).unsqueeze(0).to(device)
 
     # Put image through the extractor to get feats
     x = extractor_start(img)
